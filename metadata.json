@@ -1,0 +1,6 @@
+{
+  "name": "Vibe Room — Watch Together",
+  "description": "Совместный синхронный просмотр видео с друзьями, минималистичным переливающимся дизайном и поддержкой темной темы.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0c0e14">
+  <title>Vibe Room — Watch Together</title>
+  <meta name="description" content="Минималистичный синхронный просмотр видео с друзьями">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient-iridescence" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="/">
+      <span class="brand-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+      </span>
+      <span>Vibe Room</span>
+    </a>
+    <div class="topbar-actions">
+      <span class="online-status"><i></i> <span>Online</span></span>
+      <button id="themeToggle" class="theme-toggle" aria-label="Сменить тему" title="Сменить тему">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="home">
+      <div class="hero">
+        <span class="eyebrow">Watch together</span>
+        <h1>Смотри вместе.<br>Чувствуй момент.</h1>
+        <p>Создавай комнаты, приглашай друзей и смотрите видео в синхронном режиме.</p>
+      </div>
+
+      <div class="entry-card">
+        <label for="nickname">Твой никнейм</label>
+        <input id="nickname" maxlength="24" placeholder="Например, Alex" autocomplete="nickname">
+
+        <button id="createBtn" class="primary-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          <span>Создать комнату</span>
+        </button>
+
+        <div class="separator"><span>или</span></div>
+
+        <label for="roomCode">Код комнаты</label>
+        <input id="roomCode" maxlength="6" inputmode="numeric" placeholder="000000" autocomplete="off">
+
+        <button id="joinBtn" class="secondary-btn">Войти в комнату</button>
+        <p id="homeError" class="error"></p>
+      </div>
+
+      <p class="privacy-note">Без регистрации · Без установки · Доступ по коду</p>
+    </section>
+
+    <section id="room" class="room hidden">
+      <div class="room-header">
+        <div>
+          <span class="eyebrow">Комната просмотра</span>
+          <h2>Комната <span id="displayCode"></span></h2>
+        </div>
+        <button id="copyInvite" class="secondary-btn small">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          <span>Пригласить</span>
+        </button>
+      </div>
+
+      <div class="workspace">
+        <div class="main-column">
+          <div class="video-card">
+            <div class="video-toolbar">
+              <span>Плеер</span>
+              <span id="videoStatus">Ожидание видео</span>
+            </div>
+            <div id="videoContainer" class="video-container">
+              <div class="video-placeholder">
+                <div class="play-symbol" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+                </div>
+                <h3>Время смотреть вместе</h3>
+                <p>Вставь ссылку на видео ниже для синхронного запуска</p>
+              </div>
+            </div>
+            <div class="video-controls">
+              <input id="videoUrl" placeholder="Ссылка на YouTube или VK Видео (vkvideo.ru, vk.com/video...)">
+              <button id="loadVideo" class="primary-btn">Загрузить</button>
+            </div>
+            <p id="videoError" class="error"></p>
+          </div>
+
+          <div class="chat-card">
+            <div class="section-heading">
+              <h3>Общий чат</h3>
+              <span>Сообщения комнаты</span>
+            </div>
+            <div id="messages" class="messages"></div>
+            <div id="typing" class="typing"></div>
+            <div class="chat-compose">
+              <input id="messageInput" maxlength="500" placeholder="Напиши сообщение...">
+              <button id="sendMessage" class="send-btn" aria-label="Отправить">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </button>
+            </div>
+            <div class="reactions">
+              <button type="button" data-emoji="❤️" aria-label="Сердце">❤️</button>
+              <button type="button" data-emoji="👍" aria-label="Палец вверх">👍</button>
+              <button type="button" data-emoji="🔥" aria-label="Огонь">🔥</button>
+              <button type="button" data-emoji="👏" aria-label="Аплодисменты">👏</button>
+              <button type="button" data-emoji="😂" aria-label="Смех">😂</button>
+            </div>
+          </div>
+        </div>
+
+        <aside class="sidebar">
+          <div class="members-card">
+            <div class="section-heading">
+              <h3>Участники</h3>
+              <span id="memberCount">1 онлайн</span>
+            </div>
+            <div id="members"></div>
+          </div>
+
+          <div class="room-info">
+            <span>Код комнаты</span>
+            <strong id="sideCode">------</strong>
+            <button id="copyCode" class="secondary-btn small">Копировать код</button>
+          </div>
+
+          <button id="leaveBtn" class="leave-btn">Покинуть комнату</button>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+# Netlify configuration for Vibe Room (Watch Together)
+
+[build]
+  publish = "."
+
+# Перенаправление для корректной работы ссылок на комнаты вида /?room=123456
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Заголовки безопасности и разрешений для YouTube IFrame API и Supabase CDN
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"

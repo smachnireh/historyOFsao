@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#100d1c">
+  <title>VIBE ROOM — Watch Together</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="background-glow"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#">
+      <span class="brand-icon">▶</span>
+      VIBE ROOM
+    </a>
+    <span class="online-status"><i></i> ONLINE</span>
+  </header>
+
+  <main>
+    <section id="home" class="home">
+      <div class="hero">
+        <span class="eyebrow">WATCH TOGETHER</span>
+        <h1>Смотри вместе.<br><span>Чувствуй момент.</span></h1>
+        <p>Создавай комнаты, приглашай друзей и смотрите любимые видео вместе.</p>
+      </div>
+
+      <div class="entry-card">
+        <label for="nickname">Твой никнейм</label>
+        <input id="nickname" maxlength="24" placeholder="Например, Alex">
+
+        <button id="createBtn" class="primary-btn">＋ Создать комнату</button>
+
+        <div class="separator"><span>ИЛИ</span></div>
+
+        <label for="roomCode">Код комнаты</label>
+        <input id="roomCode" maxlength="6" inputmode="numeric"
+               placeholder="000000">
+
+        <button id="joinBtn" class="secondary-btn">Войти в комнату</button>
+        <p id="homeError" class="error"></p>
+      </div>
+      <p class="privacy-note">Без регистрации · Без установки · Просто по ссылке</p>
+    </section>
+
+    <section id="room" class="room hidden">
+      <div class="room-header">
+        <div>
+          <span class="eyebrow">YOUR WATCH PARTY</span>
+          <h2>Комната <span id="displayCode"></span></h2>
+        </div>
+        <button id="copyInvite" class="secondary-btn small">↗ Пригласить</button>
+      </div>
+
+      <div class="workspace">
+        <div class="main-column">
+          <div class="video-card">
+            <div class="video-toolbar">
+              <span>СЕЙЧАС СМОТРИМ</span>
+              <span id="videoStatus">Ожидание видео</span>
+            </div>
+            <div id="videoContainer" class="video-container">
+              <div class="video-placeholder">
+                <div class="play-symbol">▶</div>
+                <h3>Время смотреть вместе</h3>
+                <p>Добавь ссылку на видео ниже</p>
+              </div>
+            </div>
+            <div class="video-controls">
+              <input id="videoUrl" placeholder="Вставь ссылку YouTube или VK Видео">
+              <button id="loadVideo" class="primary-btn">Загрузить</button>
+            </div>
+            <p id="videoError" class="error"></p>
+          </div>
+
+          <div class="chat-card">
+            <div class="section-heading">
+              <h3>Общий чат</h3>
+              <span>Сообщения комнаты</span>
+            </div>
+            <div id="messages" class="messages"></div>
+            <div id="typing" class="typing"></div>
+            <div class="chat-compose">
+              <input id="messageInput" maxlength="500"
+                     placeholder="Напиши сообщение...">
+              <button id="sendMessage" class="send-btn">➤</button>
+            </div>
+            <div class="reactions">
+              <button data-emoji="❤️">❤️</button>
+              <button data-emoji="😂">😂</button>
+              <button data-emoji="🔥">🔥</button>
+              <button data-emoji="👏">👏</button>
+              <button data-emoji="😍">😍</button>
+            </div>
+          </div>
+        </div>
+
+        <aside class="sidebar">
+          <div class="members-card">
+            <div class="section-heading">
+              <h3>Участники</h3>
+              <span id="memberCount">0 онлайн</span>
+            </div>
+            <div id="members"></div>
+          </div>
+          <div class="room-info">
+            <span>КОД ПРИГЛАШЕНИЯ</span>
+            <strong id="sideCode"></strong>
+            <button id="copyCode" class="secondary-btn small">Копировать код</button>
+          </div>
+          <button id="leaveBtn" class="leave-btn">Покинуть комнату</button>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
